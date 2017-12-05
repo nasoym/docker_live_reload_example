@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $.ajax({
+          url:"/",
+          type:"get",
+          success: function(data){
+            var list_elements = $(data).find("li a");
+            $("#links").append(" - ");
+            $.each(list_elements,function(i,value){
+              $("#links").append("<a href='?image=" + $(value).attr("href") +
+                "'>" +
+                $(value).attr("href") +
+                "</a> - ");
+            });
+            var params = new URLSearchParams(window.location.search);
+            if ( params.has('image') ) {
+              $("#info").append("<p>" + params.get('image') + "</p>");              $("#image").attr("src",params.get('image'));
+            }
+          }
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div id="links"></div>
+    <hr/>
+    <div id="info"></div>
+    <img id="image" src="" border=1>
+  </body>
+</html>
