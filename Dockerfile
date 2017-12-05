@@ -3,7 +3,7 @@ MAINTAINER Sinan Goo
 
 RUN apk update ; apk add nodejs ; npm install -g live-server
 
-RUN mkdir /files
+RUN mkdir -p /files/images
 COPY files /files
 WORKDIR /files
 
